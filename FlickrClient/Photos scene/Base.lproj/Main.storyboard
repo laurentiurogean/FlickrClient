@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gn2-jc-Nll">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Flickr Photos Search-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="PhotosViewController" customModule="FlickrClient" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="bba-AS-1gf">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="v74-hU-Hc7"/>
+                                </connections>
+                            </searchBar>
+                            <collectionView clipsSubviews="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4ce-WJ-e9h">
+                                <rect key="frame" x="0.0" y="144" width="414" height="752"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HcZ-0h-CxD">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="ZZQ-WW-8zU"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Ekk-rx-6HY"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="bba-AS-1gf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="77j-7F-uBG"/>
+                            <constraint firstItem="bba-AS-1gf" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="F3a-vC-r82"/>
+                            <constraint firstItem="bba-AS-1gf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Twf-4y-gcN"/>
+                            <constraint firstItem="4ce-WJ-e9h" firstAttribute="top" secondItem="bba-AS-1gf" secondAttribute="bottom" id="giI-xt-Ver"/>
+                            <constraint firstAttribute="bottom" secondItem="4ce-WJ-e9h" secondAttribute="bottom" id="n6y-Bm-Qf1"/>
+                            <constraint firstItem="4ce-WJ-e9h" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qby-Qu-QEq"/>
+                            <constraint firstItem="4ce-WJ-e9h" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="yUe-oi-aiA"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Flickr Photos Search" id="Vuw-Gy-Spr"/>
+                    <connections>
+                        <outlet property="collectionView" destination="4ce-WJ-e9h" id="fxz-xD-lw9"/>
+                        <outlet property="searchBar" destination="bba-AS-1gf" id="e8O-er-s3c"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="913.04347826086962" y="24.776785714285712"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xRm-gB-AxP">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gn2-jc-Nll" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HR3-qE-Guz">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="lX1-jp-gAZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S59-mA-ntA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2.8985507246376816" y="24.776785714285712"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

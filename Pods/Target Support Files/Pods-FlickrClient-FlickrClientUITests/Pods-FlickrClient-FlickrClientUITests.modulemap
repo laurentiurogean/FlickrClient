@@ -1,0 +1,6 @@
+framework module Pods_FlickrClient_FlickrClientUITests {
+  umbrella header "Pods-FlickrClient-FlickrClientUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

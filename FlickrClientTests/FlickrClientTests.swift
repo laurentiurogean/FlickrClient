@@ -10,24 +10,47 @@ import XCTest
 
 class FlickrClientTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    var repository: PhotosRepository = MockedRepository()
+    
+    func testSearchPhotos() {
+        var testError: AppError?
+        var testResponse: PhotosAPIResponse?
+        
+        repository.searchPhotos(tags: "test", page: 1) { result in
+            switch result {
+            case .failure(let error):
+                testError = error
+            case .success(let response):
+                testResponse = response!
+            }
         }
+        
+        XCTAssertNil(testError)
+        XCTAssertNotNil(testResponse?.photos.photo)
+        XCTAssertTrue(testResponse?.photos.photo.count == 1)
+        
+        let object = testResponse?.photos.photo.first
+        XCTAssertEqual(object?.id, "12345")
+        XCTAssertEqual(object?.title, "Test")
+    }
+    
+    func testGetSizes() {
+        var testError: AppError?
+        var testResponse: SizesAPIResponse?
+        
+        repository.getSizes(photoId: "123") { result in
+            switch result {
+            case .failure(let error):
+                testError = error
+            case .success(let response):
+                testResponse = response
+            }
+        }
+        
+        XCTAssertNotNil(testError)
+        XCTAssertNil(testResponse)
+        XCTAssertEqual(testError?.code, 0)
+        XCTAssertEqual(testError?.message, "Test")
     }
 
 }
